@@ -1,0 +1,22 @@
+[
+  {
+    "model": "announcements.announcement",
+    "pk": 1,
+    "fields":
+    {
+      "title": "Mock Announcement From Database 1",
+      "content": "this is an announcement",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "announcements.announcement",
+    "pk": 2,
+    "fields":
+    {
+      "title": "Mock Announcement From Database 2",
+      "content": "this is an announcement",
+      "publisher": 1
+    }
+  }
+]

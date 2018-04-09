@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
+    url(r'^announcement/', include('api.announcements.urls')),
     url(r'^challenge/', include('api.challenges.urls')),
     url(r'^discussion/', include('api.discussions.urls')),
     url(r'^auth/token/$', obtain_jwt_token),
