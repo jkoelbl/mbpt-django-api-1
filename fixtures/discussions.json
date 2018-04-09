@@ -1,0 +1,32 @@
+[
+  {
+    "model": "discussions.discussion",
+    "pk": 1,
+    "fields":
+    {
+      "title": "Mock Discussion From Database 1",
+      "content": "This is a mock discussion queried from our database",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "discussions.discussion",
+    "pk": 2,
+    "fields":
+    {
+      "title": "Mock Discussion From Database 2",
+      "content": "This is a mock discussion queried from our database",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "discussions.discussion",
+    "pk": 3,
+    "fields":
+    {
+      "title": "Mock Discussion From Database 3",
+      "content": "This is a mock discussion queried from our database",
+      "publisher": 1
+    }
+  }
+]
