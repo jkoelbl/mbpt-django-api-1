@@ -8,4 +8,4 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Challenge
-        fields = ('id', 'title', 'description', 'publisher')
+        fields = ('id', 'title', 'description', 'created', 'publisher')

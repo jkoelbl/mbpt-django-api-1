@@ -6,6 +6,7 @@
     {
       "title": "Bubble sort",
       "description": "A slow race to the top",
+      "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
   },
@@ -16,6 +17,7 @@
     {
       "title": "FizzBuzz",
       "description": "Practice division programmatically",
+      "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
   },
@@ -26,6 +28,7 @@
     {
       "title": "Hello World",
       "description": "Say hello to the world",
+      "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
   },
@@ -36,6 +39,7 @@
     {
       "title": "BFS",
       "description": "Breadth-First Search",
+      "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
   },
@@ -46,6 +50,7 @@
     {
       "title": "Fibonacci",
       "description": "First 100 Fibonacci values",
+      "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
   }

@@ -8,4 +8,4 @@ class DiscussionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discussion
-        fields = ('id', 'title', 'content', 'publisher')
+        fields = ('id', 'title', 'content', 'created', 'publisher')
