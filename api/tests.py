@@ -20,8 +20,8 @@ class AuthTest(TestCase):
 
     def test_passing_auth(self):
         """
-        Ensure POSTing form over JWT auth with correct credentials
-        passes and does not require CSRF
+        Hitting the authentication backend with correct password.
+        Ensure the a token is returned as response
         """
         response = self.csrf_client.post(
             '/auth/token/',
@@ -33,3 +33,17 @@ class AuthTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = JSONParser().parse(BytesIO(response.content))
         self.assertTrue('token' in data)
+
+    def test_failing_auth(self):
+        """
+            Hitting the authentication backend with incorrect password.
+            Observe 400 BAD request
+        """
+        response = self.csrf_client.post(
+            '/auth/token/',
+            {
+                'username': self.username,
+                'password': self.password + '123'
+            })
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
