@@ -1,3 +1,9 @@
 from django.contrib import admin
+from api.discussions.models import Discussion
 
-# Register your models here.
+
+class DiscussionAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Discussion, DiscussionAdmin)

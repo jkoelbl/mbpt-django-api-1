@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^challenge/', include('api.challenges.urls')),
     url(r'^discussion/', include('api.discussions.urls')),
     url(r'^auth/token/$', obtain_jwt_token),
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
 ]
