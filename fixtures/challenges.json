@@ -1,0 +1,52 @@
+[
+  {
+    "model": "challenges.challenge",
+    "pk": 1,
+    "fields":
+    {
+      "title": "Bubble sort",
+      "description": "A slow race to the top",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "challenges.challenge",
+    "pk": 2,
+    "fields":
+    {
+      "title": "FizzBuzz",
+      "description": "Practice division programmatically",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "challenges.challenge",
+    "pk": 3,
+    "fields":
+    {
+      "title": "Hello World",
+      "description": "Say hello to the world",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "challenges.challenge",
+    "pk": 4,
+    "fields":
+    {
+      "title": "BFS",
+      "description": "Breadth-First Search",
+      "publisher": 1
+    }
+  },
+  {
+    "model": "challenges.challenge",
+    "pk": 5,
+    "fields":
+    {
+      "title": "Fibonacci",
+      "description": "First 100 Fibonacci values",
+      "publisher": 1
+    }
+  }
+]
