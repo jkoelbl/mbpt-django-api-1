@@ -4,8 +4,10 @@
     "pk": 1,
     "fields":
     {
+      "challenge_id": "bubblesort",
       "title": "Bubble sort",
       "description": "A slow race to the top",
+      "content": "<h1>test</h1>",
       "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
@@ -15,8 +17,10 @@
     "pk": 2,
     "fields":
     {
+      "challenge_id": "fizzbuzz",
       "title": "FizzBuzz",
       "description": "Practice division programmatically",
+      "content": "<h1>test</h1>",
       "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
@@ -26,8 +30,10 @@
     "pk": 3,
     "fields":
     {
+      "challenge_id": "helloworld",
       "title": "Hello World",
       "description": "Say hello to the world",
+      "content": "<h1>test</h1>",
       "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
@@ -37,8 +43,10 @@
     "pk": 4,
     "fields":
     {
+      "challenge_id": "bfs",
       "title": "BFS",
       "description": "Breadth-First Search",
+      "content": "<h1>test</h1>",
       "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }
@@ -48,8 +56,10 @@
     "pk": 5,
     "fields":
     {
+      "challenge_id": "fibonacci",
       "title": "Fibonacci",
       "description": "First 100 Fibonacci values",
+      "content": "<h1>test</h1>",
       "created": "2018-04-09T19:18:50.002Z",
       "publisher": 1
     }

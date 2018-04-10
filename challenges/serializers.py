@@ -3,9 +3,19 @@ from rest_framework import serializers
 from challenges.models import Challenge
 
 
-class ChallengeSerializer(serializers.ModelSerializer):
+class ChallengeListSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
 
     class Meta:
         model = Challenge
-        fields = ('id', 'title', 'description', 'created', 'publisher')
+        fields = ('challenge_id', 'title', 'description', 'created',
+                  'publisher', 'submission_count', 'accepted_count')
+
+
+class ChallengeDetailSerializer(serializers.ModelSerializer):
+    publisher = serializers.ReadOnlyField(source='publisher.username')
+
+    class Meta:
+        model = Challenge
+        fields = ('title', 'description', 'created',
+                  'publisher', 'content')

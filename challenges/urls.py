@@ -1,7 +1,9 @@
 from django.conf.urls import url
+from django.urls import path
 
-from challenges.views import ChallengeList
+from challenges.views import ChallengeList, ChallengeDetail
 
 urlpatterns = [
-    url(r'^', ChallengeList.as_view())
+    path('', ChallengeList.as_view()),
+    url(r'^(?P<challenge_id>[^/]+)$', ChallengeDetail.as_view(), name='detail')
 ]
