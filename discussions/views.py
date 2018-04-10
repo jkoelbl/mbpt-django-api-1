@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView
-from api.discussions.models import Discussion
-from api.discussions.serializers import DiscussionSerializer
+from discussions.models import Discussion
+from discussions.serializers import DiscussionSerializer
 
 
 class DiscussionList(ListCreateAPIView):

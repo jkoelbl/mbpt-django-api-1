@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from api.discussions.models import Discussion
+from announcements.models import Announcement
 
 
-class DiscussionSerializer(serializers.ModelSerializer):
+class AnnouncementSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
 
     class Meta:
-        model = Discussion
+        model = Announcement
         fields = ('id', 'title', 'content', 'created', 'publisher')

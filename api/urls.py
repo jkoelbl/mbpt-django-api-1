@@ -21,9 +21,9 @@ from django.conf.urls.static import static
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    url(r'^announcement/', include('api.announcements.urls')),
-    url(r'^challenge/', include('api.challenges.urls')),
-    url(r'^discussion/', include('api.discussions.urls')),
+    url(r'^announcement/', include('announcements.urls')),
+    url(r'^challenge/', include('challenges.urls')),
+    url(r'^discussion/', include('discussions.urls')),
     url(r'^auth/token/$', obtain_jwt_token),
     path('', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
