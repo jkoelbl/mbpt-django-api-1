@@ -18,12 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     url(r'^announcement/', include('announcements.urls')),
     url(r'^challenge/', include('challenges.urls')),
     url(r'^discussion/', include('discussions.urls')),
-    url(r'^auth/token/$', obtain_jwt_token),
+    url(r'^auth/', include('rest_framework_social_oauth2.urls')),
     path('', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
