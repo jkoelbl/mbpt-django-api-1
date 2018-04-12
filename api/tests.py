@@ -2,10 +2,7 @@ from django.utils.six import BytesIO
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.test import APIClient
-from rest_framework_jwt.compat import get_user_model
 from django.test import TestCase
-
-User = get_user_model()
 
 
 class AuthTest(TestCase):
@@ -16,7 +13,6 @@ class AuthTest(TestCase):
         self.username = 'test_user'
         self.email = 'test_user@csumb.edu'
         self.password = 'test_user_password'
-        self.user = User.objects.create_user(self.username, self.email, self.password)
 
     def test_passing_auth(self):
         """

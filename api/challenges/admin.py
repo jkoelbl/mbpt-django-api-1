@@ -1,5 +1,5 @@
 from django.contrib import admin
-from challenges.models import Challenge
+from api.challenges.models import Challenge
 
 
 class ChallengeAdmin(admin.ModelAdmin):

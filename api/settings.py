@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
-    'announcements',
-    'challenges',
-    'discussions'
+    'api.announcements',
+    'api.challenges',
+    'api.discussions'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -96,6 +96,10 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = (
    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+   'social_core.backends.google.GooglePlusAuth',
+   'social_core.backends.google.GoogleOAuth2',
+   'social_core.backends.github.GithubOAuth2',
+   'social_core.backends.facebook.FacebookOAuth2',
    'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -155,3 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '122326372661-2ec6sloh01hikracq29ic6f2nqhfn85q.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NYxm2beVYQ2vEQg1y4ZE_jdB'
+SOCIAL_AUTH_GOOGLE_OAUTH2_USE_UNIQUE_USER_ID = True

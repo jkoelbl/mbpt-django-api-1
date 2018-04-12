@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
-from challenges.models import Challenge
-from challenges.serializers import ChallengeListSerializer, ChallengeDetailSerializer
+from api.challenges.models import Challenge
+from api.challenges.serializers import ChallengeListSerializer, ChallengeDetailSerializer
 
 
 class ChallengeList(ListCreateAPIView):

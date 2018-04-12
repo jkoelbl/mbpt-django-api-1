@@ -9,3 +9,6 @@ class Announcement(models.Model):
         'auth.User',
         related_name='announcement',
         on_delete=models.CASCADE)
+
+    class Meta:
+        app_label = 'announcements'

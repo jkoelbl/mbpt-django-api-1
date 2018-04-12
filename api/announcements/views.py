@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView
-from announcements.models import Announcement
-from announcements.serializers import AnnouncementSerializer
+from api.announcements.models import Announcement
+from api.announcements.serializers import AnnouncementSerializer
 
 
 class AnnouncementList(ListCreateAPIView):
