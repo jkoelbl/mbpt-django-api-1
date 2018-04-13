@@ -1,0 +1,1 @@
+[{"model": "discussions.comment", "pk": 1, "fields": {"content": "This is a comment", "created": "2018-04-13T04:27:06.179Z", "publisher": 1, "upvotes": 0, "parentComment": null, "parentDiscussion": 4, "is_deleted": false}}]

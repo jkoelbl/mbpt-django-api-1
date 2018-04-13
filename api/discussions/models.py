@@ -12,6 +12,7 @@ class Discussion(models.Model):
     view_count = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0)
     is_deleted = models.BooleanField(default=False)
+    pass
 
 
 class Comment(models.Model):
