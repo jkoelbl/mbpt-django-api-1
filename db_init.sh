@@ -4,5 +4,6 @@ find . -path "./api/*/migrations/*.pyc"  -delete
 python manage.py makemigrations
 python manage.py migrate
 python manage.py loaddata fixtures/default_user.json
+python manage.py loaddata fixtures/default_profile.json
 python manage.py loaddata fixtures/default_client.json
 python manage.py loaddata fixtures/mock_data/*

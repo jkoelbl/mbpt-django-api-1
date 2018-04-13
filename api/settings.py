@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     'api.announcements',
     'api.challenges',
-    'api.discussions'
+    'api.discussions',
+    'api.profiles'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

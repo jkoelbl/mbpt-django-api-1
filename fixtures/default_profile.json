@@ -1,0 +1,1 @@
+[{"model": "profiles.profile", "pk": 1, "fields": {"title": "mock profile title", "content": "mock profile content", "created": "2018-04-13T02:47:00.273Z", "owner": 1}}, {"model": "profiles.profile", "pk": 2, "fields": {"title": "Donald Dong", "content": "Ayyyy this is my profile", "created": "2018-04-13T02:47:39.025Z", "owner": 6}}]
