@@ -4,5 +4,5 @@ from announcements.views import AnnouncementList, AnnouncementDetail
 
 urlpatterns = [
     url(r'^', AnnouncementList.as_view()),
-    url(r'^(?P<id>[0-?]+)$', AnnouncementDetail.as_view(), name='detail')
+    url(r'^(?P<pk>[^/]+)$', AnnouncementDetail.as_view(), name='detail')
 ]
