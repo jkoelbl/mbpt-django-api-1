@@ -8,7 +8,7 @@ class DiscussionListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discussion
-        fields = ('id', 'title', 'created', 'publisher', 'view_count')
+        fields = ('id', 'title', 'created', 'publisher', 'view_count', 'upvotes')
 
 
 class DiscussionDetailSerializer(serializers.ModelSerializer):
@@ -16,4 +16,4 @@ class DiscussionDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discussion
-        fields = ('id', 'title', 'content', 'created', 'publisher', 'view_count')
+        fields = ('id', 'title', 'content', 'created', 'publisher', 'view_count', 'upvotes')

@@ -7,7 +7,9 @@
       "title": "Mock Discussion From Database 1",
       "content": "This is a mock discussion queried from our database",
       "created": "2018-04-09T19:18:50.002Z",
-      "publisher": 1
+      "publisher": 1,
+      "view_count": 0,
+      "upvotes": 0
     }
   },
   {
@@ -18,7 +20,9 @@
       "title": "Mock Discussion From Database 2",
       "content": "This is a mock discussion queried from our database",
       "created": "2018-04-09T19:18:50.002Z",
-      "publisher": 1
+      "publisher": 1,
+      "view_count": 0,
+      "upvotes": 0
     }
   },
   {
@@ -29,7 +33,9 @@
       "title": "Mock Discussion From Database 3",
       "content": "This is a mock discussion queried from our database",
       "created": "2018-04-09T19:18:50.002Z",
-      "publisher": 1
+      "publisher": 1,
+      "view_count": 0,
+      "upvotes": 0
     }
   }
 ]
