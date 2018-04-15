@@ -16,10 +16,10 @@ class ProfileDetail(APIView):
 
     def get(self, request, format=None):
         profile = self.get_object(request.user)
-        serializer = ProfileSerializer(profile, data=request.data)
-        if serializer.is_valid():
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        if profile is None:
+            return Response('You need to register!', status=status.HTTP_402_PAYMENT_REQUIRED)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         profile = self.get_object(user=request.user)
