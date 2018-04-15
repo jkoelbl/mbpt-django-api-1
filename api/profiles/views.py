@@ -1,11 +1,10 @@
-from django import http
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from api.profiles.models import Profile
 from api.profiles.serializers import ProfileSerializer
-#create profile if no user present, ignore otherwise
-#assume info is sent as json
+from api.serializers import UserSerializer
+
 
 class ProfileDetail(APIView):
     def get_object(self, user):
@@ -17,7 +16,9 @@ class ProfileDetail(APIView):
     def get(self, request, format=None):
         profile = self.get_object(request.user)
         if profile is None:
-            return Response('You need to register!', status=status.HTTP_402_PAYMENT_REQUIRED)
+            return Response(
+                UserSerializer(request.user).data,
+                status=status.HTTP_423_LOCKED)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -25,7 +26,7 @@ class ProfileDetail(APIView):
         profile = self.get_object(user=request.user)
 
         if profile is not None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = ProfileSerializer(profile, data=request.data)
 
