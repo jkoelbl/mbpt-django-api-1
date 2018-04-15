@@ -23,8 +23,13 @@ class Comment(models.Model):
         related_name='comment',
         on_delete=models.CASCADE)
     upvotes = models.IntegerField(default=0)
-    parentComment = models.ForeignKey('self', blank=True, null=True,
+    parent_comment = models.ForeignKey('self', blank=True, null=True,
         related_name="comment", on_delete=models.CASCADE)
-    parentDiscussion = models.ForeignKey(Discussion, blank=True, null=True,
-        related_name="subcomment", on_delete=models.CASCADE)
+    discussion = models.ForeignKey(Discussion, blank=True, null=True,
+        related_name="comments", on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
+
+    comments = models.Manager()
+
+    class Meta:
+        unique_together=['discussion']

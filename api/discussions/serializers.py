@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from api.discussions.models import Discussion
+from api.discussions.models import Discussion, Comment
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'content', 'created', 'publisher', 'upvotes')
 
 
 class DiscussionListSerializer(serializers.ModelSerializer):
@@ -13,7 +19,8 @@ class DiscussionListSerializer(serializers.ModelSerializer):
 
 class DiscussionDetailSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Discussion
-        fields = ('id', 'title', 'content', 'created', 'publisher', 'view_count', 'upvotes')
+        fields = ('id', 'publisher', 'comments')
