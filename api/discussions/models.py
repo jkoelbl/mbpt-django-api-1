@@ -29,7 +29,5 @@ class Comment(models.Model):
         related_name="comments", on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
 
-    comments = models.Manager()
-
     class Meta:
         unique_together=['discussion']

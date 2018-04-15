@@ -1,12 +1,22 @@
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
-from api.discussions.models import Discussion, Comment
+from api.discussions.models import *
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    publisher = serializers.ReadOnlyField(source='publisher.username')
+    parent_comment = SerializerMethodField()
+
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'created', 'publisher', 'upvotes')
+        fields = ('id', 'content', 'created', 'publisher', 'upvotes', 'parent_comment')
+
+    def get_parent_comment(self, obj):
+        if obj.parent_comment is not None:
+            return CommentSerializer(obj.parent_comment).data
+        else:
+            return None
 
 
 class DiscussionListSerializer(serializers.ModelSerializer):
