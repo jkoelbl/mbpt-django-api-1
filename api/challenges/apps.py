@@ -1,4 +1,4 @@
-from django.api.import AppConfig
+from django.api import AppConfig
 
 
 class ChallengeConfig(AppConfig):
