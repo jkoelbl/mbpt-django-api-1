@@ -19,11 +19,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from api.views import UserDetailGet, UserDetailPost
+
 urlpatterns = [
     url(r'^announcement/', include('api.announcements.urls')),
     url(r'^challenge/', include('api.challenges.urls')),
     url(r'^discussion/', include('api.discussions.urls')),
     url(r'^profile/', include('api.profiles.urls')),
+    url(r'^user/', UserDetailGet.as_view()),
+    url(r'^user/create', UserDetailPost.as_view()),
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
     path('', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
