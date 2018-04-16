@@ -33,4 +33,5 @@ class DiscussionDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discussion
-        fields = ('id', 'publisher', 'comments')
+        fields = ('id', 'title', 'created', 'publisher',
+                  'view_count', 'upvotes', 'content', 'comments')
