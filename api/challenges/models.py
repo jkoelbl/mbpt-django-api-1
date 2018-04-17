@@ -6,6 +6,7 @@ class Challenge(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField()
     content = models.TextField()
+    difficulty = models.IntegerField(default=0)
     submission_count = models.PositiveIntegerField(default=0)
     accepted_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
