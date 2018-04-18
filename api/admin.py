@@ -8,3 +8,5 @@ class LanguageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Language, LanguageAdmin)
+admin.site.site_title = 'MBPT Admin Panel'
+admin.site.site_header = 'MBPT Admin Panel'
