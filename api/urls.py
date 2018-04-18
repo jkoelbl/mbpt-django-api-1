@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from api.views import UserDetailPost
+from api.views import UserDetailPost, LanguageList
 
 urlpatterns = [
     url(r'^announcement/', include('api.announcements.urls')),
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^discussion/', include('api.discussions.urls')),
     # Retrieve and/or Update Profile
     url(r'^profile/', include('api.profiles.urls')),
+    url(r'^lang/', LanguageList.as_view()),
     # Create new user profile and new user
     url(r'^user/', UserDetailPost.as_view()),
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
