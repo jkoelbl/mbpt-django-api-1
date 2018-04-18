@@ -1,5 +1,4 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
-from api.discussions.models import *
 from api.discussions.serializers import *
 
 
@@ -13,7 +12,9 @@ class DiscussionList(ListCreateAPIView):
     serializer_class = DiscussionListSerializer
 
     def perform_create(self, serializer):
-        serializer.save(publisher=self.request.user)
+        discussion = DiscussionDetailSerializer(data=self.request.data)
+        if discussion.is_valid():
+            discussion.save(publisher=self.request.user)
 
 
 class DiscussionDetail(RetrieveUpdateDestroyAPIView):
