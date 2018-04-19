@@ -13,7 +13,13 @@ class Challenge(models.Model):
     publisher = models.ForeignKey('auth.User', related_name='challenge', on_delete=models.CASCADE)
 
 
+class SubmissionStatus(models.Model):
+    status = models.CharField(max_length=64)
+
+
 class Submission(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey('auth.User', related_name='submission', on_delete=models.CASCADE)
     challenge = models.ForeignKey(Challenge, related_name='submission', on_delete=models.CASCADE)
+    status = models.ForeignKey(SubmissionStatus, related_name='submission', on_delete=models.CASCADE)
+

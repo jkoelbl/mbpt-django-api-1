@@ -1,0 +1,1 @@
+[{"model": "challenges.submissionstatus", "pk": 1, "fields": {"status": "Accepted"}}, {"model": "challenges.submissionstatus", "pk": 2, "fields": {"status": "Wrong Answer"}}, {"model": "challenges.submissionstatus", "pk": 3, "fields": {"status": "Time Limit Exceeded"}}, {"model": "challenges.submissionstatus", "pk": 4, "fields": {"status": "Memory Limit Exceeded"}}]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.challenges.models import Challenge
+from api.challenges.models import Challenge, Submission
 
 
 class ChallengeListSerializer(serializers.ModelSerializer):
@@ -19,3 +19,13 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
         model = Challenge
         fields = ('title', 'description', 'created',
                   'publisher', 'content')
+
+
+class SubmissionListSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    status = serializers.ReadOnlyField(source='status.status')
+    challenges = ChallengeListSerializer(read_only=True)
+
+    class Meta:
+        model = Submission
+        fields = ('id', 'created', 'owner', 'challenges', 'status')

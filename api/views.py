@@ -70,5 +70,5 @@ class UserDetailPost(APIView):
 
 
 class LanguageList(ListAPIView):
-    queryset =  Language.objects.all()
+    queryset = Language.objects.all()
     serializer_class = LanguageSerializer
