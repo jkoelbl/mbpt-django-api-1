@@ -34,10 +34,6 @@ class SubmissionListCreate(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, challenge_id, filename=None, format=None):
-        print(format)
-        print(challenge_id)
-        print(request.FILES)
-        print(filename)
         submission = SubmissionDetailSerializer(data=request.data)
         if submission.is_valid():
             submission.save(
@@ -45,5 +41,5 @@ class SubmissionListCreate(APIView):
                 challenge=Challenge.objects.get(challenge_id=challenge_id),
                 status=SubmissionStatus.objects.get(id=1)
             )
-            return Response(data=submission.validated_data, status=204)
+            return Response(submission.validated_data, status=status.HTTP_201_CREATED)
         return Response(status=400)
