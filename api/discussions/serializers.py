@@ -23,7 +23,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class DiscussionListSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
-    tags = TagSerializer(many=True, read_only=True)
+    tags = models.ManyToManyField(Tag, many=True)
 
     class Meta:
         model = Discussion
@@ -33,15 +33,9 @@ class DiscussionListSerializer(serializers.ModelSerializer):
 class DiscussionDetailSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
     comments = CommentSerializer(many=True, read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
+    tags = models.ManyToManyField(Tag, many=True)
 
     class Meta:
         model = Discussion
         fields = ('id', 'title', 'created', 'publisher',
                   'view_count', 'upvotes', 'content', 'comments', 'tags')
-
-
-class TagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = ('tag_name')
