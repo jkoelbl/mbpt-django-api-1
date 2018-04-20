@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, RetrieveAPIView
 from api.discussions.serializers import *
 
 
@@ -17,7 +17,7 @@ class DiscussionList(ListCreateAPIView):
             discussion.save(publisher=self.request.user)
 
 
-class DiscussionDetail(RetrieveUpdateDestroyAPIView):
+class DiscussionDetail(RetrieveUpdateAPIView):
     queryset = Discussion.objects.all()
     serializer_class = DiscussionDetailSerializer
 
