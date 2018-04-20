@@ -29,3 +29,13 @@ class SubmissionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submission
         fields = ('id', 'created', 'owner', 'challenges', 'status')
+
+
+class SubmissionDetailSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    status = serializers.ReadOnlyField(source='status.status')
+    challenges = ChallengeListSerializer(read_only=True)
+
+    class Meta:
+        model = Submission
+        fields = ('id', 'created', 'owner', 'challenges', 'status', 'file')
