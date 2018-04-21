@@ -1,14 +1,1 @@
-[
-  {
-    "tag_name": "searching"
-  },
-  {
-    "tag_name": "sorting"
-  },
-  {
-    "tag_name": "general"
-  },
-  {
-    "tag_name": "random"
-  }
-]
+[{"model": "api.tag", "pk": 1, "fields": {"phrase": "searching"}}, {"model": "api.tag", "pk": 2, "fields": {"phrase": "sorting"}}, {"model": "api.tag", "pk": 3, "fields": {"phrase": "general"}}, {"model": "api.tag", "pk": 4, "fields": {"phrase": "random"}}]
