@@ -1,5 +1,7 @@
 from django.db import models
 
+from api.models import Tag
+
 
 class Challenge(models.Model):
     challenge_id = models.CharField(max_length=30, unique=True)
@@ -10,6 +12,7 @@ class Challenge(models.Model):
     submission_count = models.PositiveIntegerField(default=0)
     accepted_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
+    tags = models.ManyToManyField(Tag)
     publisher = models.ForeignKey('auth.User', related_name='challenge', on_delete=models.CASCADE)
 
 

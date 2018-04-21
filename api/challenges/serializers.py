@@ -1,8 +1,6 @@
 from rest_framework import serializers
 
 from api.challenges.models import Challenge, Submission
-from api.models import Tag
-from api.serializers import TagSerializer
 
 
 class ChallengeListSerializer(serializers.ModelSerializer):
@@ -16,8 +14,6 @@ class ChallengeListSerializer(serializers.ModelSerializer):
 
 class ChallengeDetailSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
-    #for demo porpoises
-    tags = models.ManyToManyField(Tag, many=True)
 
     class Meta:
         model = Challenge

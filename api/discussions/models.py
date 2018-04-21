@@ -1,5 +1,7 @@
 from django.db import models
 
+from api.models import Tag
+
 
 class Discussion(models.Model):
     title = models.CharField(max_length=256)
@@ -12,8 +14,7 @@ class Discussion(models.Model):
     view_count = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0)
     is_deleted = models.BooleanField(default=False)
-    tag = models.ManyToManyField('Tag', related_name="tags")
-    pass
+    tags = models.ManyToManyField(Tag)
 
 
 class Comment(models.Model):
