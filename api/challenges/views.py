@@ -43,3 +43,11 @@ class SubmissionListCreate(APIView):
             )
             return Response(submission.validated_data, status=status.HTTP_201_CREATED)
         return Response(status=400)
+
+
+class SubmissionList(APIView):
+    def get(self, request):
+        # get the country by its primary key from the url
+        submissions = Submission.objects.filter(owner=request.user)
+        serializer = SubmissionListSerializer(submissions, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
