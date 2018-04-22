@@ -1,6 +1,5 @@
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
-from rest_framework.parsers import FileUploadParser, FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -24,8 +23,6 @@ class ChallengeDetail(RetrieveAPIView):
 
 
 class SubmissionListCreate(APIView):
-    parser_classes = (FileUploadParser, MultiPartParser, FormParser)
-
     def get(self, request, challenge_id):
         # get the country by its primary key from the url
         challenge = Challenge.objects.get(challenge_id=challenge_id)
@@ -37,7 +34,7 @@ class SubmissionListCreate(APIView):
         submission = SubmissionDetailSerializer(data=request.data)
         if submission.is_valid():
             submission.save(
-                owner=request.user, file=request.FILES['file'],
+                owner=request.user,
                 challenge=Challenge.objects.get(challenge_id=challenge_id),
                 status=SubmissionStatus.objects.get(id=1)
             )
