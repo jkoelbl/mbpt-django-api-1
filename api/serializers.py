@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from api.models import Language, Tag
+from api.models import Language, Tag, Tier
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -20,3 +20,9 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('id','phrase')
+
+
+class TierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tier
+        fields = ('level','label')
