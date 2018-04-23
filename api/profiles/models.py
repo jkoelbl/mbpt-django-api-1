@@ -5,10 +5,9 @@ from api.models import Language
 
 
 class Profile(models.Model):
-    title = models.CharField(max_length=256)
-    content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    display_name = models.CharField(max_length=150)
+    display_name = models.CharField(max_length=150, blank=True)
+    image = models.URLField(blank=True)
     default_language = models.ForeignKey(
         Language, related_name='profile', on_delete=models.CASCADE, default=1)
     owner = models.ForeignKey(

@@ -27,8 +27,18 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
 class SubmissionListSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     status = serializers.ReadOnlyField(source='status.status')
-    challenges = ChallengeListSerializer(read_only=True)
+    challenge_id = serializers.ReadOnlyField(source='challenge.challenge_id')
 
     class Meta:
         model = Submission
-        fields = ('id', 'created', 'owner', 'challenges', 'status')
+        fields = ('id', 'created', 'owner', 'challenge_id', 'status')
+
+
+class SubmissionDetailSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    status = serializers.ReadOnlyField(source='status.status')
+    challenge_id = serializers.ReadOnlyField(source='challenge.challenge_id')
+
+    class Meta:
+        model = Submission
+        fields = ('id', 'created', 'owner', 'challenge_id', 'status', 'content')

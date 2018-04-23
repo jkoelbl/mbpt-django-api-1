@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -39,3 +40,27 @@ class ProfileDetail(APIView):
             profile.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, format=None):
+        try:
+            profile = self.get_object(user=request.user)
+            if 'username' in request.data:
+                try:
+                    User.objects.get(username=request.data['username'])
+                except User.DoesNotExist:
+                    request.user.username = request.data['username']
+            if 'first_name' in request.data:
+                request.user.first_name = request.data['first_name']
+            if 'last_name' in request.data:
+                request.user.last_name = request.data['last_name']
+            if 'display_name' in request.data:
+                profile.display_name = request.data['display_name']
+            if 'image' in request.data:
+                profile.image = request.data['image']
+            request.user.save()
+            profile.save()
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except:
+            pass
+        return Response('Invalid parameters', status=status.HTTP_400_BAD_REQUEST)

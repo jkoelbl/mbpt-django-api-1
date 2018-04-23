@@ -59,11 +59,7 @@ class UserDetailPost(APIView):
                 request.user.save()
                 user = request.user
 
-            profile = Profile.objects.create(
-                title='Default Profile Title',
-                content='Default Profile content',
-                owner=user
-            )
+            profile = Profile.objects.create(owner=user)
             profile.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
