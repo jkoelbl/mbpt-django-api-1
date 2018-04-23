@@ -11,3 +11,4 @@ py manage.py loaddata fixtures/mock_data/discussions.json
 py manage.py loaddata fixtures/mock_data/comments.json
 py manage.py loaddata fixtures/mock_data/submissionstatus.json
 py manage.py loaddata fixtures/mock_data/submissions.json
+py manage.py loaddata fixtures/mock_data/tags.json
