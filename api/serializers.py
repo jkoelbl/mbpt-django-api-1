@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
-        fields = ('name', 'icon')
+        fields = ('id', 'name')
 
 
 class TagSerializer(serializers.ModelSerializer):

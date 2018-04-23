@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.models import Tag
+from api.models import Language, Tag
 
 
 class Challenge(models.Model):
@@ -26,4 +26,5 @@ class Submission(models.Model):
     owner = models.ForeignKey('auth.User', related_name='submission', on_delete=models.CASCADE)
     challenge = models.ForeignKey(Challenge, related_name='submission', on_delete=models.CASCADE)
     status = models.ForeignKey(SubmissionStatus, related_name='submission', on_delete=models.CASCADE)
+    language = models.ForeignKey(Language, related_name='submission', on_delete=models.CASCADE)
 

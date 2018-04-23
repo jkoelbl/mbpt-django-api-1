@@ -1,1 +1,4 @@
-[{"model": "api.language", "pk": 1, "fields": {"name": "none", "icon": ":3"}}, {"model": "api.language", "pk": 2, "fields": {"name": "C++", "icon": ":3"}}, {"model": "api.language", "pk": 3, "fields": {"name": "Java", "icon": ":3"}}, {"model": "api.language", "pk": 4, "fields": {"name": "Python", "icon": ":3"}}, {"model": "api.language", "pk": 5, "fields": {"name": "Ruby", "icon": ":3"}}]
+[{"model": "api.language", "pk": 1, "fields": {"name": "C++"}},
+  {"model": "api.language", "pk": 2, "fields": {"name": "Java"}},
+  {"model": "api.language", "pk": 3, "fields": {"name": "Python"}},
+  {"model": "api.language", "pk": 4, "fields": {"name": "Ruby"}}]
