@@ -34,13 +34,13 @@
 					"response": []
 				},
 				{
-					"name": "/challenge/bfs - list particular challenge",
+					"name": "/challenge/oddmanout - list particular challenge",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8000/challenge/bfs",
+							"raw": "http://localhost:8000/challenge/oddmanout",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -48,7 +48,7 @@
 							"port": "8000",
 							"path": [
 								"challenge",
-								"bfs"
+								"oddmanout"
 							]
 						},
 						"description": "this is a test"
@@ -154,7 +154,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\": \"This is a test\",\n\t\"content\": \"This is content for this test.\"\n}"
+							"raw": "{\n\t\"title\": \"This is a test\",\n\t\"content\": \"This is content for this test.\",\n\t\"tags\": [1, 2]\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/discussion/",
@@ -178,7 +178,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8000/discussion/1",
+							"raw": "http://localhost:8000/discussion/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -186,7 +186,7 @@
 							"port": "8000",
 							"path": [
 								"discussion",
-								"1"
+								"9"
 							]
 						}
 					},
@@ -204,7 +204,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\":\"Mock discussion from database (updated)\",\n\t\"content\": \"This is a mock discussion queried from our database\"\n}"
+							"raw": "{\n\t\"title\":\"Mock discussion from database (updated)\",\n\t\"content\": \"This is a mock discussion queried from our database\",\n\t\"tags\": []\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/discussion/1",
@@ -255,35 +255,6 @@
 						"method": "GET",
 						"header": [],
 						"body": {},
-						"url": {
-							"raw": "http://localhost:8000/profile/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"profile",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/profile - add user profile",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\":\"This is my profile\",\n\t\"content\":\"This is some content for my profile\",\n\t\"created\":\"2018-04-13 02:47:39.025000\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8000/profile/",
 							"protocol": "http",
@@ -370,7 +341,7 @@
 			"description": "Testing for submissions",
 			"item": [
 				{
-					"name": "/submission/bfs - list all submissions",
+					"name": "/submission/oddmanout - list all submissions",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -392,13 +363,13 @@
 					"response": []
 				},
 				{
-					"name": "/submission/bfs - add new submissions",
+					"name": "/submission/oddmanout - add new submissions",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8000/challenge/submission/bfs",
+							"raw": "http://localhost:8000/challenge/submission/oddmanout",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -407,7 +378,34 @@
 							"path": [
 								"challenge",
 								"submission",
-								"bfs"
+								"oddmanout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Language Endpoints",
+			"description": "testing for languages",
+			"item": [
+				{
+					"name": "/lang - get all languages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/lang/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lang",
+								""
 							]
 						}
 					},
@@ -445,12 +443,12 @@
 						},
 						{
 							"key": "username",
-							"value": "jkoelbl",
+							"value": "root",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "acesp096",
+							"value": "1234qwer",
 							"type": "text"
 						}
 					]
@@ -476,7 +474,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "FVc5qce4WlMiDtzmJJsadQFzi8yCWt",
+				"value": "4yRb0ZfFwFxQkxI7v3wdl601qMMOaj",
 				"type": "string"
 			},
 			{
