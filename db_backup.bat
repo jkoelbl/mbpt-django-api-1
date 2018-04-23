@@ -8,3 +8,4 @@ py manage.py dumpdata discussions.discussion > fixtures/mock_data/discussions.js
 py manage.py dumpdata discussions.comment > fixtures/mock_data/comments.json
 py manage.py dumpdata api.language > fixtures/default_language.json
 py manage.py dumpdata api.tag > fixtures/mock_data/tags.json
+py manage.py dumpdata api.tier > fixtures/mock_data/tiers.json

@@ -416,6 +416,9 @@
 		{
 			"name": "Get access token",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -474,7 +477,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "4yRb0ZfFwFxQkxI7v3wdl601qMMOaj",
+				"value": "Foa24mfaEtSeAIKTxnf8yPawjdzemx",
 				"type": "string"
 			},
 			{

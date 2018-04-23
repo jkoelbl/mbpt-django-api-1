@@ -6,3 +6,7 @@ class Language(models.Model):
 
 class Tag(models.Model):
     phrase = models.CharField(max_length=100)
+
+class Tier(models.Model):
+    level = models.IntegerField()
+    label = models.CharField(max_length=100, null=True)

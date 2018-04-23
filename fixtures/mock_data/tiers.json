@@ -1,0 +1,47 @@
+[
+  {
+    "model": "api.tier",
+    "pk": 1,
+    "fields":
+    {
+      "level": 0,
+      "label": "Newbie"
+    }
+  },
+  {
+    "model": "api.tier",
+    "pk": 2,
+    "fields":
+    {
+      "level": 1,
+      "label": "Freshman"
+    }
+  },
+  {
+    "model": "api.tier",
+    "pk": 3,
+    "fields":
+    {
+      "level": 2,
+      "label": "Sophomore"
+    }
+  },
+  {
+    "model": "api.tier",
+    "pk": 4,
+    "fields":
+    {
+      "level": 3,
+      "label": "Junior"
+    }
+  },
+  {
+    "model": "api.tier",
+    "pk": 5,
+    "fields":
+    {
+      "level": 4,
+      "label": "Senior"
+    }
+  }
+]

@@ -1,5 +1,5 @@
 from django.db import models
-from api.models import Language
+from api.models import Language, Tier
 
 
 class Profile(models.Model):
@@ -12,3 +12,5 @@ class Profile(models.Model):
         'auth.User',
         related_name='profile',
         on_delete=models.CASCADE)
+    tier = models.ForeignKey(
+        Tier, on_delete=models.DO_NOTHING(0,0,0,0), default=1)
