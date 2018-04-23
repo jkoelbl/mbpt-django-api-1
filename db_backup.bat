@@ -6,3 +6,5 @@ py manage.py dumpdata challenges.submissionstatus > fixtures/mock_data/submissio
 py manage.py dumpdata challenges.submission > fixtures/mock_data/submissions.json
 py manage.py dumpdata discussions.discussion > fixtures/mock_data/discussions.json
 py manage.py dumpdata discussions.comment > fixtures/mock_data/comments.json
+py manage.py dumpdata api.language > fixtures/default_language.json
+py manage.py dumpdata api.tag > fixtures/mock_data/tags.json

@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -8,12 +8,9 @@ from api.challenges.serializers import ChallengeListSerializer, ChallengeDetailS
     SubmissionDetailSerializer
 
 
-class ChallengeList(ListCreateAPIView):
+class ChallengeList(ListAPIView):
     queryset = Challenge.objects.all()
     serializer_class = ChallengeListSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(publisher=self.request.user)
 
 
 class ChallengeDetail(RetrieveAPIView):
@@ -40,6 +37,7 @@ class SubmissionListCreate(APIView):
             )
             return Response(submission.validated_data, status=status.HTTP_201_CREATED)
         return Response(status=400)
+
 
 
 class SubmissionList(APIView):

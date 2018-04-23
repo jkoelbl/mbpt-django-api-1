@@ -1,5 +1,7 @@
 from django.db import models
 
+from api.models import Tag
+
 
 class Discussion(models.Model):
     title = models.CharField(max_length=256)
@@ -12,7 +14,7 @@ class Discussion(models.Model):
     view_count = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0)
     is_deleted = models.BooleanField(default=False)
-    pass
+    tags = models.ManyToManyField(Tag, blank=True)
 
 
 class Comment(models.Model):
@@ -28,6 +30,3 @@ class Comment(models.Model):
     discussion = models.ForeignKey(Discussion, blank=True, null=True,
         related_name="comments", on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
-
-    '''class Meta:
-        unique_together=['discussion']'''

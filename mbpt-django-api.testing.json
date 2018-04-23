@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "46288ed0-c029-47ab-a28d-119084ba2063",
+		"name": "mbpt-django-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Challenge Endpoints",
+			"description": "All tests with challenge endpoints",
+			"item": [
+				{
+					"name": "/challenge - list all challenges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/challenge/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"challenge",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/challenge/oddmanout - list particular challenge",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/challenge/oddmanout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"challenge",
+								"oddmanout"
+							]
+						},
+						"description": "this is a test"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Announcement Endpoints",
+			"description": "Testing Endpoints for Announcements",
+			"item": [
+				{
+					"name": "/announcement - list all announcements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/announcement/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"announcement",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/announcement/1 - list particular announcement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5ab502f-1efc-4979-aefe-95c0d7b1e287",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/announcement/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"announcement",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discussion Endpoints",
+			"description": "Tests for Discussion endpoints",
+			"item": [
+				{
+					"name": "/discussion - list all discussions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion - add new discussions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"This is a test\",\n\t\"content\": \"This is content for this test.\",\n\t\"tags\": [1, 2]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/discussion/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion/1 - list particular discussion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion/1 - update particular discussion",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Mock discussion from database (updated)\",\n\t\"content\": \"This is a mock discussion queried from our database\",\n\t\"tags\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/discussion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion/comment/4 - list particular comment tree",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/comment/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"comment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile Endpoints",
+			"description": "Testing for all profile endpoints",
+			"item": [
+				{
+					"name": "/profile - list user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/profile/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/profile - update user profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"This is my profile (updated)\",\n\t\"content\":\"This is some content for my profile (updated)\",\n\t\"created\":\"2018-04-13 02:47:39.025000\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/profile/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Endpoints",
+			"description": "Testing for getting user information",
+			"item": [
+				{
+					"name": "/user/create - add new user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"Dude16\",\n\t\"first_name\":\"Bro\",\n\t\"last_name\":\"Ski\",\n\t\"email\":\"bski@csumb.edu\",\n\t\"password\":\"1632\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Submission Endpoints",
+			"description": "Testing for submissions",
+			"item": [
+				{
+					"name": "/submission/oddmanout - list all submissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/challenge/submission/oddmanout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"challenge",
+								"submission",
+								"oddmanout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/submission/oddmanout - add new submissions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/challenge/submission/oddmanout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"challenge",
+								"submission",
+								"oddmanout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Language Endpoints",
+			"description": "testing for languages",
+			"item": [
+				{
+					"name": "/lang - get all languages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/lang/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lang",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get access token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "mbpt-ng5",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "kkNo4Vp9kIt3Nngs0E8mjo0SI8niF43ylXLEhiKZVhAhmNiLTSWWh9CtiJMKA30YgFLXYDN2o8wpIEuhARHybbnnPXK3AhUPDudL7efc7P7VYHO7b3OB3GMyh8vhBZrG",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "root",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234qwer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/auth/token",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"token"
+					]
+				},
+				"description": "django-rest-framework-social-oauth2\n\nrun first then update mbpt-django-api folder's auth token"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessToken",
+				"value": "4yRb0ZfFwFxQkxI7v3wdl601qMMOaj",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b284fa0d-37ce-488d-aa26-a5c213fcd687",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "33839794-deba-4aa0-a527-c9395960cfe8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
