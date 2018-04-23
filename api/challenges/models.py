@@ -1,5 +1,7 @@
 from django.db import models
 
+from api.models import Language
+
 
 class Challenge(models.Model):
     challenge_id = models.CharField(max_length=30, unique=True)
@@ -23,4 +25,5 @@ class Submission(models.Model):
     owner = models.ForeignKey('auth.User', related_name='submission', on_delete=models.CASCADE)
     challenge = models.ForeignKey(Challenge, related_name='submission', on_delete=models.CASCADE)
     status = models.ForeignKey(SubmissionStatus, related_name='submission', on_delete=models.CASCADE)
+    language = models.ForeignKey(Language, related_name='submission', on_delete=models.CASCADE)
 
