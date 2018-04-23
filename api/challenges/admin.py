@@ -30,8 +30,7 @@ class ChallengeAdmin(admin.ModelAdmin):
             for x in dFrequency]
 
         response.context_data['summary'] = list(
-            qs.values('title', 'difficulty')
-            .order_by('-difficulty')
+            qs.order_by('-difficulty')
         )
 
         return response

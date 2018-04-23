@@ -25,7 +25,7 @@
     <tbody>
       {% for row in summary %}
       <tr class="{% cycle 'row1' 'row2' %}">
-        <td> {{ row.title }} </td>
+        <td> <a href="/challenges/challenge/{{ row.id }}/change">{{ row.title }} </a></td>
         <td> {{ row.difficulty }} </td>
       </tr>
       {% endfor %}
