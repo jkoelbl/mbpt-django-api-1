@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from api.models import Language
 from api.profiles.models import Profile
 from api.profiles.serializers import ProfileSerializer
 from api.serializers import UserSerializer
@@ -47,6 +49,7 @@ class ProfileDetail(APIView):
             if 'username' in request.data:
                 try:
                     User.objects.get(username=request.data['username'])
+                    return Response('username', status=status.HTTP_409_CONFLICT)
                 except User.DoesNotExist:
                     request.user.username = request.data['username']
             if 'first_name' in request.data:
@@ -55,8 +58,12 @@ class ProfileDetail(APIView):
                 request.user.last_name = request.data['last_name']
             if 'display_name' in request.data:
                 profile.display_name = request.data['display_name']
+            if 'password' in request.data:
+                request.user.set_password(request.data['password'])
             if 'image' in request.data:
                 profile.image = request.data['image']
+            if 'lang_id' in request.data:
+                profile.default_language = Language.objects.get(pk=request.data['lang_id'])
             request.user.save()
             profile.save()
             serializer = ProfileSerializer(profile)
