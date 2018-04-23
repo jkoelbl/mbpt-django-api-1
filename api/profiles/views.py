@@ -55,6 +55,8 @@ class ProfileDetail(APIView):
                 request.user.last_name = request.data['last_name']
             if 'display_name' in request.data:
                 profile.display_name = request.data['display_name']
+            if 'password' in request.data:
+                request.user.set_password(request.data['password'])
             if 'image' in request.data:
                 profile.image = request.data['image']
             request.user.save()
