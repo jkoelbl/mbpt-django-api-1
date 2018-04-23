@@ -1,5 +1,6 @@
 from django.db import models
 from api.models import Language, Tier
+from api.todo.models import Todo
 
 
 class Profile(models.Model):
@@ -12,5 +13,5 @@ class Profile(models.Model):
         'auth.User',
         related_name='profile',
         on_delete=models.CASCADE)
-    tier = models.ForeignKey(
-        Tier, on_delete=models.DO_NOTHING(0,0,0,0), default=1)
+    todo = models.ForeignKey(Todo, on_delete=models.CASCADE, null=True)
+    tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, default=1)

@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.models import Language, Tag
+from api.models import Language, Tag, Tier
 
 
 class Challenge(models.Model):
@@ -13,6 +13,7 @@ class Challenge(models.Model):
     accepted_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag)
+    tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, null=True)
     publisher = models.ForeignKey('auth.User', related_name='challenge', on_delete=models.CASCADE)
 
 

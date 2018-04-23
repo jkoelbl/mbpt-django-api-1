@@ -178,7 +178,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8000/discussion/9",
+							"raw": "http://localhost:8000/discussion/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -186,7 +186,7 @@
 							"port": "8000",
 							"path": [
 								"discussion",
-								"9"
+								"1"
 							]
 						}
 					},
@@ -414,6 +414,62 @@
 			]
 		},
 		{
+			"name": "Todo Endpoints",
+			"description": "testing for todo list",
+			"item": [
+				{
+					"name": "/todo - list profiles todo list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/todo/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"todo",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/todo - add item to todo list",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"challenge_id\": \"fizzbuzz\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/todo/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"todo",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Get access token",
 			"request": {
 				"auth": {
@@ -477,7 +533,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "Foa24mfaEtSeAIKTxnf8yPawjdzemx",
+				"value": "LHGVu3jRE1jyThv5rpiUZ4Joq8RlDx",
 				"type": "string"
 			},
 			{

@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from api.challenges.models import Challenge, Submission
 from api.models import Tag
-from api.serializers import TagSerializer
+from api.serializers import TagSerializer, TierSerializer
 
 
 class ChallengeListSerializer(serializers.ModelSerializer):
@@ -18,11 +18,12 @@ class ChallengeListSerializer(serializers.ModelSerializer):
 class ChallengeDetailSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
     tags = TagSerializer(many=True, read_only=True)
+    tier = TierSerializer(read_only=True)
 
     class Meta:
         model = Challenge
         fields = ('title', 'description', 'created',
-                  'publisher', 'content', 'tags')
+                  'publisher', 'content', 'tags', 'tier')
 
 
 class SubmissionListSerializer(serializers.ModelSerializer):

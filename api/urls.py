@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^discussion/', include('api.discussions.urls')),
     # Retrieve and/or Update Profile
     url(r'^profile/', include('api.profiles.urls')),
+    url(r'^todo/', include('api.todo.urls')),
     url(r'^lang/', LanguageList.as_view()),
     # Create new user profile and new user
     url(r'^user/', UserDetailPost.as_view()),
