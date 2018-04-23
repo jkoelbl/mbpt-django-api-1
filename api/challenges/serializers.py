@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from api.challenges.models import Challenge, Submission
 from api.models import Tag
-from api.serializers import TagSerializer
+from api.serializers import TagSerializer, LanguageSerializer
 
 
 class ChallengeListSerializer(serializers.ModelSerializer):
@@ -29,17 +29,19 @@ class SubmissionListSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     status = serializers.ReadOnlyField(source='status.status')
     challenge_id = serializers.ReadOnlyField(source='challenge.challenge_id')
+    language = LanguageSerializer(read_only=True)
 
     class Meta:
         model = Submission
-        fields = ('id', 'created', 'owner', 'challenge_id', 'status')
+        fields = ('id', 'created', 'owner', 'challenge_id', 'status', 'language')
 
 
 class SubmissionDetailSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     status = serializers.ReadOnlyField(source='status.status')
     challenge_id = serializers.ReadOnlyField(source='challenge.challenge_id')
+    language = LanguageSerializer(read_only=True)
 
     class Meta:
         model = Submission
-        fields = ('id', 'created', 'owner', 'challenge_id', 'status', 'content')
+        fields = ('id', 'created', 'owner', 'challenge_id', 'status', 'content', 'language')

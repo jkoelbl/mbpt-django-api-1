@@ -5,6 +5,8 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py loaddata fixtures/default_user.json
 python manage.py loaddata fixtures/default_language.json
+python manage.py loaddata fixtures/mock_data/tiers.json
+python manage.py loaddata fixtures/mock_data/tags.json
 python manage.py loaddata fixtures/default_profile.json
 python manage.py loaddata fixtures/default_client.json
 python manage.py loaddata fixtures/mock_data/announcements.json
@@ -13,5 +15,3 @@ python manage.py loaddata fixtures/mock_data/discussions.json
 python manage.py loaddata fixtures/mock_data/comments.json
 python manage.py loaddata fixtures/mock_data/submissionstatus.json
 python manage.py loaddata fixtures/mock_data/submissions.json
-python manage.py loaddata fixtures/mock_data/tags.json
-python manage.py loaddata fixtures/mock_data/tiers.json

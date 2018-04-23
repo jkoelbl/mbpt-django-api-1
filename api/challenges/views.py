@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from api.challenges.models import Challenge, Submission, SubmissionStatus
 from api.challenges.serializers import ChallengeListSerializer, ChallengeDetailSerializer, SubmissionListSerializer, \
     SubmissionDetailSerializer
+from api.models import Language
 
 
 class ChallengeList(ListAPIView):
@@ -29,15 +30,15 @@ class SubmissionListCreate(APIView):
 
     def post(self, request, challenge_id, filename=None, format=None):
         submission = SubmissionDetailSerializer(data=request.data)
-        if submission.is_valid():
+        if submission.is_valid() and 'language_id' in request.data:
             submission.save(
                 owner=request.user,
                 challenge=Challenge.objects.get(challenge_id=challenge_id),
-                status=SubmissionStatus.objects.get(id=1)
+                status=SubmissionStatus.objects.get(id=1),
+                language=Language.objects.get(id=request.data['language_id'])
             )
             return Response(submission.validated_data, status=status.HTTP_201_CREATED)
         return Response(status=400)
-
 
 
 class SubmissionList(APIView):
