@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 
 from api.challenges.models import Challenge, Submission, SubmissionStatus
 from api.challenges.serializers import ChallengeListSerializer, ChallengeDetailSerializer, SubmissionListSerializer, \
-    SubmissionDetailSerializer
+    SubmissionDetailSerializer, SubmissionIDSerializer
 from api.models import Language
 
 
@@ -37,7 +37,7 @@ class SubmissionListCreate(APIView):
                 status=SubmissionStatus.objects.get(id=1),
                 language=Language.objects.get(id=request.data['language_id'])
             )
-            return Response(SubmissionDetailSerializer(submission).data, status=status.HTTP_201_CREATED)
+            return Response(SubmissionIDSerializer(submission).data, status=status.HTTP_201_CREATED)
         return Response(status=400)
 
 
