@@ -1,14 +1,15 @@
 from django.db import models
 
 from api.models import Tag
+from api.profiles.models import Profile
 
 
 class Discussion(models.Model):
     title = models.CharField(max_length=256)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    publisher = models.ForeignKey(
-        'auth.User',
+    profile = models.ForeignKey(
+        Profile,
         related_name='discussion',
         on_delete=models.CASCADE)
     view_count = models.IntegerField(default=0)
@@ -20,8 +21,8 @@ class Discussion(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    publisher = models.ForeignKey(
-        'auth.User',
+    profile = models.ForeignKey(
+        Profile,
         related_name='comment',
         on_delete=models.CASCADE)
     upvotes = models.IntegerField(default=0)

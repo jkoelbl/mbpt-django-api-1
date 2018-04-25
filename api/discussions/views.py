@@ -14,7 +14,8 @@ class DiscussionList(ListCreateAPIView):
     def perform_create(self, serializer):
         discussion = DiscussionDetailSerializer(data=self.request.data)
         if discussion.is_valid():
-            discussion.save(publisher=self.request.user)
+            profile = Profile.objects.get(owner=self.request.user)
+            discussion.save(profile=profile)
 
 
 class DiscussionDetail(RetrieveUpdateAPIView):
@@ -22,4 +23,5 @@ class DiscussionDetail(RetrieveUpdateAPIView):
     serializer_class = DiscussionDetailSerializer
 
     def perform_create(self, serializer):
-        serializer.save(publisher=self.request.user)
+        profile = Profile.objects.get(owner=self.request.user)
+        serializer.save(profile=profile)
