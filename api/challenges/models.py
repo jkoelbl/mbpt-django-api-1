@@ -12,8 +12,8 @@ class Challenge(models.Model):
     submission_count = models.PositiveIntegerField(default=0)
     accepted_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
-    tags = models.ManyToManyField(Tag)
-    tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, null=True)
+    tags = models.ManyToManyField(Tag, blank=None, null=True)
+    tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, null=True, blank=None)
     publisher = models.ForeignKey('auth.User', related_name='challenge', on_delete=models.CASCADE)
 
 
