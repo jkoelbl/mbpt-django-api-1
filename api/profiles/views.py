@@ -63,7 +63,7 @@ class ProfileDetail(APIView):
             if 'image' in request.data:
                 profile.image = request.data['image']
             if 'lang_id' in request.data:
-                profile.default_language = Language.objects.get(pk=request.data['lang_id'])
+                profile.default_language = Language.objects.get(id=request.data['lang_id'])
             request.user.save()
             profile.save()
             serializer = ProfileSerializer(profile)
