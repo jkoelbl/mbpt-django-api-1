@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0a45e4c2-a870-4d33-bac3-b6d9583a47b1",
+		"_postman_id": "a663538f-99ea-4fc2-b8e2-670e6d2e1aba",
 		"name": "mbpt-django-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -387,6 +387,30 @@
 					"response": []
 				},
 				{
+					"name": "/submission/<id> - Retrive submission detail by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/submission/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"submission",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/submission/oddmanout - add new submissions",
 					"request": {
 						"method": "POST",
@@ -457,7 +481,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8000/todo/",
 							"protocol": "http",
@@ -568,7 +595,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "LHGVu3jRE1jyThv5rpiUZ4Joq8RlDx",
+				"value": "Qmi5W5WkHjBXuPOLPQUSHyoGo5q7Mk",
 				"type": "string"
 			},
 			{

@@ -1,8 +1,6 @@
-from django.db import models
 from rest_framework import serializers
 
 from api.challenges.models import Challenge, Submission
-from api.models import Tag
 from api.serializers import TagSerializer, LanguageSerializer, TierSerializer
 
 
@@ -12,7 +10,7 @@ class ChallengeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Challenge
         fields = ('challenge_id', 'title', 'description', 'created',
-                  'publisher', 'submission_count', 'accepted_count')
+                  'publisher', 'submission_count', 'accepted_count', 'difficulty')
 
 
 class ChallengeDetailSerializer(serializers.ModelSerializer):
@@ -23,7 +21,7 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Challenge
         fields = ('title', 'description', 'created',
-                  'publisher', 'content', 'tags', 'tier')
+                  'publisher', 'content', 'tags', 'tier', 'difficulty')
 
 
 class SubmissionListSerializer(serializers.ModelSerializer):
@@ -46,3 +44,9 @@ class SubmissionDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submission
         fields = ('id', 'created', 'owner', 'challenge_id', 'status', 'content', 'language')
+
+
+class SubmissionIDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Submission
+        fields = ('id',)

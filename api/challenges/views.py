@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 
 from api.challenges.models import Challenge, Submission, SubmissionStatus
 from api.challenges.serializers import ChallengeListSerializer, ChallengeDetailSerializer, SubmissionListSerializer, \
-    SubmissionDetailSerializer
+    SubmissionDetailSerializer, SubmissionIDSerializer
 from api.models import Language
 
 
@@ -29,15 +29,15 @@ class SubmissionListCreate(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, challenge_id, filename=None, format=None):
-        submission = SubmissionDetailSerializer(data=request.data)
-        if submission.is_valid() and 'language_id' in request.data:
-            submission.save(
+        serializer = SubmissionDetailSerializer(data=request.data)
+        if serializer.is_valid() and 'language_id' in request.data:
+            submission = serializer.save(
                 owner=request.user,
                 challenge=Challenge.objects.get(challenge_id=challenge_id),
                 status=SubmissionStatus.objects.get(id=1),
                 language=Language.objects.get(id=request.data['language_id'])
             )
-            return Response(submission.validated_data, status=status.HTTP_201_CREATED)
+            return Response(SubmissionIDSerializer(submission).data, status=status.HTTP_201_CREATED)
         return Response(status=400)
 
 
@@ -47,3 +47,15 @@ class SubmissionList(APIView):
         submissions = Submission.objects.filter(owner=request.user)
         serializer = SubmissionListSerializer(submissions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class SubmissionDetail(RetrieveAPIView):
+    queryset = Submission.objects.all()
+    serializer_class = SubmissionDetailSerializer
+
+    def get(self, request, *args, **kwargs):
+        submission = self.get_object()
+        if submission.owner.id != request.user.id:
+            return Response(status=400)
+        serializer = self.get_serializer(submission)
+        return Response(serializer.data)
