@@ -27,7 +27,6 @@ class DiscussionDetail(RetrieveUpdateAPIView):
     serializer_class = DiscussionDetailSerializer
 
     def perform_create(self, serializer):
-<<<<<<< HEAD
         serializer.save(publisher=self.request.user)
 
 
@@ -81,7 +80,3 @@ class DiscussionUpvote(APIView):
             discussion.upvotes += 1
         discussion.save()
         return Response(status=status.HTTP_200_OK)
-=======
-        profile = Profile.objects.get(owner=self.request.user)
-        serializer.save(profile=profile)
->>>>>>> a3a29b8104c74a7480d30d4e320ec353ae981348
