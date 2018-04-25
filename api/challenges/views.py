@@ -14,10 +14,22 @@ class ChallengeList(ListAPIView):
     serializer_class = ChallengeListSerializer
 
 
-class ChallengeDetail(RetrieveUpdateAPIView):
-    queryset = Challenge.objects.all()
-    serializer_class = ChallengeDetailSerializer
-    lookup_field = 'challenge_id'
+class ChallengeDetail(APIView):
+    def get(self, request, challenge_id):
+        try:
+            challenge = Challenge.objects.get(challenge_id=challenge_id)
+        except Challenge.DoesNotExist:
+            return Response(status=400)
+        submissions = challenge.submission_set.filter(owner=request.user)
+        accepted = submissions.filter(status=2)
+        serializer = ChallengeDetailSerializer(challenge, data={
+            'accepted': len(accepted) > 0,
+            'attempted': len(submissions) > 0,
+        }, partial=True)
+        if serializer.is_valid():
+            return Response(ChallengeDetailSerializer(serializer.save()).data,
+                            status=status.HTTP_200_OK)
+        return Response(status=400)
 
 
 class SubmissionListCreate(APIView):

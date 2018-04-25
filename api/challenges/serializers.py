@@ -17,10 +17,12 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
     tags = TagSerializer(many=True, read_only=True)
     tier = TierSerializer(read_only=True)
+    accepted = serializers.BooleanField(default=False)
+    attempted = serializers.BooleanField(default=False)
 
     class Meta:
         model = Challenge
-        fields = ('title', 'description', 'created',
+        fields = ('title', 'description', 'created', 'accepted', 'attempted',
                   'publisher', 'content', 'tags', 'tier', 'difficulty')
 
 
