@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^(?P<challenge_id>[^/]+)$', ChallengeDetail.as_view(), name='detail'),
     # All the submissions relate to current user
     url(r'^submission/(?P<challenge_id>[^/]+)$', SubmissionListCreate.as_view(), name='challenge_submissions'),
-    url(r'^submission/$', SubmissionList.as_view(), name='submissions'),
+    url(r'^submission/$', SubmissionList.as_view(), name='submissions')
 ]

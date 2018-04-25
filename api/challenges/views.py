@@ -29,6 +29,14 @@ class SubmissionListCreate(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, challenge_id, filename=None, format=None):
+        # increment challenge submission counter
+        # only perform this if the user hasn't submitted with acceptance
+        challenge = Challenge.objects.get(challenge_id=challenge_id)
+        prev_submission = Submission.objects.filter(owner=request.user, challenge_id=challenge)
+        if len(prev_submission) == 0:
+            challenge.submission_count += 1
+            challenge.save()
+
         serializer = SubmissionDetailSerializer(data=request.data)
         if serializer.is_valid() and 'language_id' in request.data:
             submission = serializer.save(
@@ -37,16 +45,6 @@ class SubmissionListCreate(APIView):
                 status=SubmissionStatus.objects.get(id=1),
                 language=Language.objects.get(id=request.data['language_id'])
             )
-            #increment challenge submission and acceptance counters
-            #only perform this if the user hasn't submitted with acceptance
-            prev_submission = Submission.objects.filter(owner=request.user).filter(status_id=1)
-            if len(prev_submission) == 0:
-                challenge = Challenge.objects.get(challenge_id=challenge_id)
-                challenge.submission_count += 1
-                if submission.status_id == 1:
-                    challenge.accepted_count += 1
-                challenge.save()
-
             return Response(SubmissionIDSerializer(submission).data, status=status.HTTP_201_CREATED)
         return Response(status=400)
 
