@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.generics import RetrieveAPIView, ListAPIView
+from rest_framework.generics import RetrieveUpdateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -14,7 +14,7 @@ class ChallengeList(ListAPIView):
     serializer_class = ChallengeListSerializer
 
 
-class ChallengeDetail(RetrieveAPIView):
+class ChallengeDetail(RetrieveUpdateAPIView):
     queryset = Challenge.objects.all()
     serializer_class = ChallengeDetailSerializer
     lookup_field = 'challenge_id'
@@ -37,6 +37,16 @@ class SubmissionListCreate(APIView):
                 status=SubmissionStatus.objects.get(id=1),
                 language=Language.objects.get(id=request.data['language_id'])
             )
+            #increment challenge submission and acceptance counters
+            #only perform this if the user hasn't submitted with acceptance
+            prev_submission = Submission.objects.filter(owner=request.user).filter(status_id=1)
+            if len(prev_submission) == 0:
+                challenge = Challenge.objects.get(challenge_id=challenge_id)
+                challenge.submission_count += 1
+                if submission.status_id == 1:
+                    challenge.accepted_count += 1
+                challenge.save()
+
             return Response(SubmissionIDSerializer(submission).data, status=status.HTTP_201_CREATED)
         return Response(status=400)
 
