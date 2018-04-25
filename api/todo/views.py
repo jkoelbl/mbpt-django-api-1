@@ -15,9 +15,7 @@ class TodoList(APIView):
             serializer = TodoSerializer(todo)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Todo.DoesNotExist:
-            todo = Todo.objects.create(
-                owner = request.user
-            )
+            todo = Todo.objects.create(owner=request.user)
             todo.save()
             serializer = TodoSerializer(todo)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -27,7 +25,14 @@ class TodoList(APIView):
             challenge = Challenge.objects.get(challenge_id=request.data['challenge_id'])
         except Challenge.DoesNotExist:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        todo = Todo.objects.get(owner=request.user)
-        todo.challenges.add(challenge)
+        try:
+            todo = Todo.objects.get(owner=request.user)
+        except Todo.DoesNotExist:
+            todo = Todo.objects.create(owner=request.user)
+        try:
+            challenge = todo.challenges.get(challenge_id=request.data['challenge_id'])
+            todo.challenges.remove(challenge)
+        except Challenge.DoesNotExist:
+            todo.challenges.add(challenge)
         todo.save()
         return Response(status=status.HTTP_200_OK)
