@@ -12,8 +12,8 @@ class Challenge(models.Model):
     submission_count = models.PositiveIntegerField(default=0)
     accepted_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
-    tags = models.ManyToManyField(Tag, blank=True)
-    tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, null=True, blank=True)
+    tags = models.ManyToManyField(Tag, blank=None)
+    tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, null=True, blank=None)
     publisher = models.ForeignKey('auth.User', related_name='challenge', on_delete=models.CASCADE)
 
 
@@ -26,6 +26,6 @@ class Submission(models.Model):
     content = models.TextField(blank=True)
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
-    status = models.ForeignKey(SubmissionStatus, on_delete=models.CASCADE)
+    status = models.ForeignKey(SubmissionStatus, on_delete=models.CASCADE, default=1)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a663538f-99ea-4fc2-b8e2-670e6d2e1aba",
+		"_postman_id": "b56ec473-eb6a-4c6c-99af-f1867281cdf5",
 		"name": "mbpt-django-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -260,6 +260,51 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost:8000/discussion/1/upvote",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/1/upvote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"1",
+								"upvote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8000/discussion/comment/1/upvote",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/comment/1/upvote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"comment",
+								"1",
+								"upvote"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -422,7 +467,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"content\": \"#include <solution>\",\n\t\"language_id\": 1\n}"
+							"raw": "{\n\t\"content\": \"#include <solution>\",\n\t\"language_id\": 1,\n\t\"status_id\": 1\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/challenge/submission/oddmanout",
@@ -595,7 +640,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "Qmi5W5WkHjBXuPOLPQUSHyoGo5q7Mk",
+				"value": "VL8M6DehHWc4GqgaHDoQvFZipdSxG2",
 				"type": "string"
 			},
 			{

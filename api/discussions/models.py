@@ -31,3 +31,12 @@ class Comment(models.Model):
     discussion = models.ForeignKey(Discussion, blank=True, null=True,
         related_name="comments", on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
+
+
+class Upvote(models.Model):
+    profile = models.ForeignKey(
+        Profile,
+        related_name='profile',
+        on_delete=models.CASCADE)
+    discussion_id = models.ForeignKey(Discussion, blank=True, null=True, on_delete=models.CASCADE)
+    comment_id = models.ForeignKey(Comment, blank=True, null=True, on_delete=models.CASCADE)
