@@ -7,6 +7,7 @@ from api.challenges.models import Challenge, Submission, SubmissionStatus
 from api.challenges.serializers import ChallengeListSerializer, ChallengeDetailSerializer, SubmissionListSerializer, \
     SubmissionDetailSerializer, SubmissionIDSerializer
 from api.models import Language
+from api.todo.models import Todo
 
 
 class ChallengeList(ListAPIView):
@@ -22,9 +23,17 @@ class ChallengeDetail(APIView):
             return Response(status=400)
         submissions = challenge.submission_set.filter(owner=request.user)
         accepted = submissions.filter(status=2)
+        inTodoList = False
+        try:
+            todo = Todo.objects.get(owner=request.user)
+            todo.challenges.get(challenge_id=challenge_id)
+            inTodoList = True
+        except:
+            pass
         serializer = ChallengeDetailSerializer(challenge, data={
             'accepted': len(accepted) > 0,
             'attempted': len(submissions) > 0,
+            'todo': inTodoList
         }, partial=True)
         if serializer.is_valid():
             return Response(ChallengeDetailSerializer(serializer.save()).data,

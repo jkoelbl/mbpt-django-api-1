@@ -19,10 +19,11 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
     tier = TierSerializer(read_only=True)
     accepted = serializers.BooleanField(default=False)
     attempted = serializers.BooleanField(default=False)
+    todo = serializers.BooleanField(default=False)
 
     class Meta:
         model = Challenge
-        fields = ('title', 'description', 'created', 'accepted', 'attempted',
+        fields = ('title', 'description', 'created', 'accepted', 'attempted', 'todo',
                   'publisher', 'content', 'tags', 'tier', 'difficulty')
 
 
