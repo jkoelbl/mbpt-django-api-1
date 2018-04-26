@@ -30,15 +30,12 @@ class ChallengeDetail(APIView):
             inTodoList = True
         except:
             pass
-        serializer = ChallengeDetailSerializer(challenge, data={
+        serializer = ChallengeDetailSerializer(challenge, context={
             'accepted': len(accepted) > 0,
             'attempted': len(submissions) > 0,
             'todo': inTodoList
-        }, partial=True)
-        if serializer.is_valid():
-            return Response(ChallengeDetailSerializer(serializer.save()).data,
-                            status=status.HTTP_200_OK)
-        return Response(status=400)
+        },)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class SubmissionListCreate(APIView):
