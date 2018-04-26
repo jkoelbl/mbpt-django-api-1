@@ -38,5 +38,5 @@ class Upvote(models.Model):
         Profile,
         related_name='profile',
         on_delete=models.CASCADE)
-    discussion_id = models.ForeignKey(Discussion, blank=True, null=True, on_delete=models.CASCADE)
-    comment_id = models.ForeignKey(Comment, blank=True, null=True, on_delete=models.CASCADE)
+    discussion = models.ForeignKey(Discussion, blank=True, null=True, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, blank=True, null=True, on_delete=models.CASCADE)
