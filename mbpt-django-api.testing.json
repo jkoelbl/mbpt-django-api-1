@@ -690,6 +690,27 @@
 			]
 		},
 		{
+			"name": "/scoreboard/ - list scoreboard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/scoreboard/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scoreboard",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get access token",
 			"request": {
 				"auth": {
@@ -746,27 +767,6 @@
 				"description": "django-rest-framework-social-oauth2\n\nrun first then update mbpt-django-api folder's auth token"
 			},
 			"response": []
-		},
-		{
-			"name": "/scoreboard/ - list scoreboard",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8000/scoreboard/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"scoreboard",
-						""
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"auth": {
@@ -774,7 +774,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "lKk7aFBX0xFK6nrVzxNfKsXnaFl8pv",
+				"value": "NaAxFocrzYt5VwGNKtyHWNNAh06w14",
 				"type": "string"
 			},
 			{
