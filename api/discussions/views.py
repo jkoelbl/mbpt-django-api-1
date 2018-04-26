@@ -82,6 +82,25 @@ class DiscussionDetail(RetrieveUpdateAPIView):
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
 
+    def get(self, request, pk):
+        try:
+            discussion = Discussion.objects.get(pk=pk)
+            upvoted = False
+            try:
+                profile = Profile.objects.get(owner=request.user)
+                Upvote.objects.get(profile=profile, discussion=discussion)
+                upvoted = True
+            except:
+                pass
+            serializer = DiscussionDetailSerializer(discussion, data={
+                'upvoted': upvoted
+            }, partial=True)
+            if serializer.is_valid():
+                return Response(DiscussionDetailSerializer(serializer.save()).data, status=status.HTTP_200_OK)
+        except Discussion.DoesNotExist:
+            pass
+        return Response(status=400)
+
 
 class CommentUpvote(APIView):
     def put(self, request, pk, *args, **kwargs):
@@ -109,8 +128,7 @@ class CommentUpvote(APIView):
 
 
 class DiscussionUpvote(APIView):
-    def put(self, request, pk, *args, **kwargs):
-        profile, upvote, discussion = any, any, any
+    def put(self, request, pk):
         # check for comment in database
         try:
             discussion = Discussion.objects.get(pk=pk)
@@ -120,13 +138,13 @@ class DiscussionUpvote(APIView):
         # get upvote from user profile
         try:
             profile = Profile.objects.get(owner=request.user)
-            upvote = Upvote.objects.get(profile=profile, discussion_id=pk)
+            upvote = Upvote.objects.get(profile=profile, discussion=discussion)
             upvote.delete()
             discussion.upvotes -= 1
         except Upvote.DoesNotExist:
             upvote = Upvote.objects.create(
                 profile=profile,
-                discussion_id=discussion,
+                discussion=discussion,
             )
             upvote.save()
             discussion.upvotes += 1
