@@ -25,14 +25,14 @@ class CommentList(APIView):
             discussion = Discussion.objects.get(id=request.data['discussion'])
             try:
                 comment = Comment.objects.get(id=request.data['comment'])
-                object = serializer.save(
+                serializer.save(
                     profile=profile,
                     discussion=discussion,
                     parent_comment=comment
                 )
             except KeyError:
-                object = serializer.save(profile=profile, discussion=discussion)
-            return Response(CommentIDSerializer(object).data, status=status.HTTP_200_OK)
+                serializer.save(profile=profile, discussion=discussion)
+            return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 

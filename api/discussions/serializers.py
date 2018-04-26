@@ -44,12 +44,6 @@ class CommentDetailSerializer(serializers.ModelSerializer):
         return False
 
 
-class CommentIDSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = ('id',)
-
-
 class DiscussionListSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(source='profile.display_name')
     image = serializers.ReadOnlyField(source='profile.image')
