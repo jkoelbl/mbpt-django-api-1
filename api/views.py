@@ -8,6 +8,7 @@ from api.models import Language
 from api.permissions import PublicEndpoint
 from api.profiles.models import Profile
 from api.serializers import UserSerializer, LanguageSerializer
+from api.todo.models import Todo
 
 
 class UserDetailGet(APIView):
@@ -58,8 +59,10 @@ class UserDetailPost(APIView):
                 request.user.set_password(request.data['password'])
                 request.user.save()
                 user = request.user
-
-            profile = Profile.objects.create(owner=user)
+            todo = Todo.objects.create(owner=user)
+            todo.save()
+            profile = Profile.objects.create(owner=user, todo=todo)
+            profile.display_name = user.username
             profile.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)

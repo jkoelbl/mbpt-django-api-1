@@ -1,20 +1,25 @@
 from rest_framework import serializers
 
 from api.challenges.models import Challenge, Submission
+from api.profiles.models import Profile
 from api.serializers import TagSerializer, LanguageSerializer, TierSerializer
 
 
 class ChallengeListSerializer(serializers.ModelSerializer):
-    publisher = serializers.ReadOnlyField(source='publisher.username')
+    publisher = serializers.SerializerMethodField()
 
     class Meta:
         model = Challenge
         fields = ('challenge_id', 'title', 'description', 'created',
                   'publisher', 'submission_count', 'accepted_count', 'difficulty')
 
+    def get_publisher(self, obj):
+        profile = Profile.objects.get(owner=obj.publisher)
+        return profile.display_name
+
 
 class ChallengeDetailSerializer(serializers.ModelSerializer):
-    publisher = serializers.ReadOnlyField(source='publisher.username')
+    publisher = serializers.SerializerMethodField()
     tags = TagSerializer(many=True, read_only=True)
     tier = TierSerializer(read_only=True)
     accepted = serializers.SerializerMethodField()
@@ -34,6 +39,10 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
 
     def get_todo(self, obj):
         return self.context.get('todo')
+
+    def get_publisher(self, obj):
+        profile = Profile.objects.get(owner=obj.publisher)
+        return profile.display_name
 
 
 class SubmissionListSerializer(serializers.ModelSerializer):
