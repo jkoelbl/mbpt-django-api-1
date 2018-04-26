@@ -237,32 +237,7 @@
 					"response": []
 				},
 				{
-					"name": "/discussion/comment/4 - list particular comment tree",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8000/discussion/comment/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"discussion",
-								"comment",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8000/discussion/1/upvote",
+					"name": "/discussion/1/upvote - perform upvote",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -276,29 +251,6 @@
 							"port": "8000",
 							"path": [
 								"discussion",
-								"1",
-								"upvote"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8000/discussion/comment/1/upvote",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8000/discussion/comment/1/upvote",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"discussion",
-								"comment",
 								"1",
 								"upvote"
 							]
@@ -359,6 +311,56 @@
 							"port": "8000",
 							"path": [
 								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/profile/discussion - list discussions related to profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/profile/discussion/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"profile",
+								"discussion",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/profile/comment - list comments related to profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/profile/comment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"profile",
+								"comment",
 								""
 							]
 						}
@@ -577,6 +579,117 @@
 			]
 		},
 		{
+			"name": "Comment Endpoints",
+			"description": "Testing for comment endpoints",
+			"item": [
+				{
+					"name": "/discussion/comment/ - add comment to particular discussion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": \"new content\",\n\t\"discussion\": 1,\n\t\"comment\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/discussion/comment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion/comment/1 - get comment relating to current profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion/comment/1 - edit comment to particular discussion",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": \"new comment (edit)\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/discussion/comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/discussion/comment/1/upvote - perform upvote",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/discussion/comment/1/upvote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discussion",
+								"comment",
+								"1",
+								"upvote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Get access token",
 			"request": {
 				"auth": {
@@ -640,7 +753,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "VL8M6DehHWc4GqgaHDoQvFZipdSxG2",
+				"value": "KGPaVb33jDNtBCHXAggfLFOAF7CKpA",
 				"type": "string"
 			},
 			{
