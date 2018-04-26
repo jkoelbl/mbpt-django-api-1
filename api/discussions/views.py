@@ -111,8 +111,8 @@ class CommentUpvote(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         #get upvote from user profile
+        profile = Profile.objects.get(owner=request.user)
         try:
-            profile = Profile.objects.get(owner=request.user)
             upvote = Upvote.objects.get(profile=profile, comment_id=pk)
             upvote.delete()
             comment.upvotes -= 1
@@ -136,8 +136,8 @@ class DiscussionUpvote(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         # get upvote from user profile
+        profile = Profile.objects.get(owner=request.user)
         try:
-            profile = Profile.objects.get(owner=request.user)
             upvote = Upvote.objects.get(profile=profile, discussion=discussion)
             upvote.delete()
             discussion.upvotes -= 1
