@@ -15,3 +15,4 @@ class Profile(models.Model):
         on_delete=models.CASCADE)
     todo = models.ForeignKey(Todo, on_delete=models.CASCADE, null=True)
     tier = models.ForeignKey(Tier, on_delete=models.DO_NOTHING, default=1)
+    points = models.IntegerField(default=0)

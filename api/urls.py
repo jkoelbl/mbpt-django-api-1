@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from api.profiles.views import ProfileList
 from api.views import UserDetailPost, LanguageList
 from api.challenges.views import SubmissionDetail
 
@@ -34,5 +35,6 @@ urlpatterns = [
     url(r'^user/', UserDetailPost.as_view()),
     url(r'^submission/(?P<pk>[^/]+)$', SubmissionDetail.as_view()),
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
+    url(r'^scoreboard/', ProfileList.as_view()),
     path('', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

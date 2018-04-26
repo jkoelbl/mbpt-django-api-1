@@ -1,12 +1,20 @@
 from django.contrib.auth.models import User
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.models import Language
 from api.profiles.models import Profile
-from api.profiles.serializers import ProfileSerializer
+from api.profiles.serializers import ProfileSerializer, ProfileListSerializer
 from api.serializers import UserSerializer
+
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        profiles = Profile.objects.all()
+        serializer = ProfileListSerializer(profiles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProfileDetail(APIView):
