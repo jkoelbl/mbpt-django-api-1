@@ -6,6 +6,6 @@ from api.profiles.views import ProfileDetail
 
 urlpatterns = [
     path('', ProfileDetail.as_view()),
-    url(r'^discussion/', DiscussionProfile.as_view()),
-    url(r'^comment/', CommentProfile.as_view()),
+    url(r'^discussion/$', DiscussionProfile.as_view()),
+    url(r'^comment/$', CommentProfile.as_view()),
 ]

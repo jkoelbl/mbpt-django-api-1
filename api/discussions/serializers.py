@@ -12,15 +12,15 @@ class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'created', 'display_name', 'image',
-        'upvotes')
+        fields = ('id', 'content', 'created', 'display_name',
+                  'image', 'upvotes')
 
 
 class CommentDetailSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(source='profile.display_name')
     image = serializers.ReadOnlyField(source='profile.image')
     parent_comment = SerializerMethodField()
-    upvoted = serializers.BooleanField(default=False)
+    upvoted = SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -29,12 +29,22 @@ class CommentDetailSerializer(serializers.ModelSerializer):
 
     def get_parent_comment(self, obj):
         if obj.parent_comment is not None:
-            return CommentDetailSerializer(obj.parent_comment).data
+            return CommentDetailSerializer(obj.parent_comment, context=self.context).data
         else:
             return None
 
+    def get_upvoted(self, obj):
+        try:
+            user = self.context.get('user')
+            profile = Profile.objects.get(owner=user)
+            Upvote.objects.get(profile=profile, comment=obj)
+            return True
+        except:
+            pass
+        return False
 
-class IdSerializer(serializers.ModelSerializer):
+
+class CommentIDSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id',)
@@ -54,11 +64,17 @@ class DiscussionListSerializer(serializers.ModelSerializer):
 class DiscussionDetailSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(source='profile.display_name')
     image = serializers.ReadOnlyField(source='profile.image')
-    comments = CommentDetailSerializer(many=True, read_only=True)
+    comments = SerializerMethodField()
     tags = TagSerializer(many=True, read_only=True)
-    upvoted = serializers.BooleanField(default=False)
+    upvoted = SerializerMethodField()
 
     class Meta:
         model = Discussion
         fields = ('id', 'title', 'created', 'display_name', 'image', 'upvoted',
                   'view_count', 'upvotes', 'content', 'comments', 'tags')
+
+    def get_comments(self, obj):
+        return CommentDetailSerializer(obj.comments, many=True, read_only=True, context=self.context).data
+
+    def get_upvoted(self, obj):
+        return self.context.get('upvoted')

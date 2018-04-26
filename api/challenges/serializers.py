@@ -17,14 +17,23 @@ class ChallengeDetailSerializer(serializers.ModelSerializer):
     publisher = serializers.ReadOnlyField(source='publisher.username')
     tags = TagSerializer(many=True, read_only=True)
     tier = TierSerializer(read_only=True)
-    accepted = serializers.BooleanField(default=False)
-    attempted = serializers.BooleanField(default=False)
-    todo = serializers.BooleanField(default=False)
+    accepted = serializers.SerializerMethodField()
+    attempted = serializers.SerializerMethodField()
+    todo = serializers.SerializerMethodField()
 
     class Meta:
         model = Challenge
         fields = ('title', 'description', 'created', 'accepted', 'attempted', 'todo',
                   'publisher', 'content', 'tags', 'tier', 'difficulty')
+
+    def get_accepted(self, obj):
+        return self.context.get('accepted')
+
+    def get_attempted(self, obj):
+        return self.context.get('attempted')
+
+    def get_todo(self, obj):
+        return self.context.get('todo')
 
 
 class SubmissionListSerializer(serializers.ModelSerializer):

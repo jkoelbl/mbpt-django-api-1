@@ -18,7 +18,9 @@ class CommentProfile(APIView):
 class CommentList(APIView):
     def post(self, request, format=None):
         profile = Profile.objects.get(owner=request.user)
-        serializer = CommentDetailSerializer(data=request.data)
+        serializer = CommentDetailSerializer(data=request.data, context={
+            'user': request.user
+        })
         if serializer.is_valid():
             discussion = Discussion.objects.get(id=request.data['discussion'])
             try:
@@ -30,7 +32,7 @@ class CommentList(APIView):
                 )
             except KeyError:
                 object = serializer.save(profile=profile, discussion=discussion)
-            return Response(IdSerializer(object).data, status=status.HTTP_200_OK)
+            return Response(CommentIDSerializer(object).data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -43,13 +45,17 @@ class CommentDetail(APIView):
 
     def get(self, request, pk, format=None):
         comment = self.get_object(pk)
-        serializer = CommentDetailSerializer(comment)
+        serializer = CommentDetailSerializer(comment, context={
+            'user': request.user
+        })
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk, format=None):
         profile = Profile.objects.get(owner=request.user)
         comment = self.get_object(pk)
-        serializer = CommentDetailSerializer(comment, data=request.data)
+        serializer = CommentDetailSerializer(comment, data=request.data, context={
+            'user': request.user
+        })
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_200_OK)
@@ -92,11 +98,11 @@ class DiscussionDetail(RetrieveUpdateAPIView):
                 upvoted = True
             except:
                 pass
-            serializer = DiscussionDetailSerializer(discussion, data={
+            serializer = DiscussionDetailSerializer(discussion, context={
+                'user': request.user,
                 'upvoted': upvoted
-            }, partial=True)
-            if serializer.is_valid():
-                return Response(DiscussionDetailSerializer(serializer.save()).data, status=status.HTTP_200_OK)
+            })
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Discussion.DoesNotExist:
             pass
         return Response(status=400)
@@ -119,7 +125,7 @@ class CommentUpvote(APIView):
         except Upvote.DoesNotExist:
             upvote = Upvote.objects.create(
                 profile=profile,
-                comment_id=comment,
+                comment=comment,
             )
             upvote.save()
             comment.upvotes += 1
