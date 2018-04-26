@@ -6,7 +6,17 @@ from api.models import Tag
 from api.serializers import TagSerializer
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class CommentListSerializer(serializers.ModelSerializer):
+    display_name = serializers.ReadOnlyField(source='profile.display_name')
+    image = serializers.ReadOnlyField(source='profile.image')
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'content', 'created', 'display_name', 'image',
+        'upvotes')
+
+
+class CommentDetailSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(source='profile.display_name')
     image = serializers.ReadOnlyField(source='profile.image')
     parent_comment = SerializerMethodField()
@@ -18,9 +28,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_parent_comment(self, obj):
         if obj.parent_comment is not None:
-            return CommentSerializer(obj.parent_comment).data
+            return CommentDetailSerializer(obj.parent_comment).data
         else:
             return None
+
+
+class IdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id',)
 
 
 class DiscussionListSerializer(serializers.ModelSerializer):
@@ -37,7 +53,7 @@ class DiscussionListSerializer(serializers.ModelSerializer):
 class DiscussionDetailSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(source='profile.display_name')
     image = serializers.ReadOnlyField(source='profile.image')
-    comments = CommentSerializer(many=True, read_only=True)
+    comments = CommentDetailSerializer(many=True, read_only=True)
     tags = TagSerializer(many=True, read_only=True)
 
     class Meta:

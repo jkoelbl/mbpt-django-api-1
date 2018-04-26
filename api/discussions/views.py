@@ -1,14 +1,67 @@
+from django.http import Http404
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.discussions.serializers import *
 
 
-class CommentList(RetrieveAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+class CommentProfile(APIView):
+    def get(self, request, format=None):
+        profile = Profile.objects.get(owner=request.user)
+        comments = Comment.objects.filter(profile=profile)
+        serializer = CommentListSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CommentList(APIView):
+    def post(self, request, format=None):
+        profile = Profile.objects.get(owner=request.user)
+        serializer = CommentDetailSerializer(data=request.data)
+        if serializer.is_valid():
+            discussion = Discussion.objects.get(id=request.data['discussion'])
+            try:
+                comment = Comment.objects.get(id=request.data['comment'])
+                object = serializer.save(
+                    profile=profile,
+                    discussion=discussion,
+                    parent_comment=comment
+                )
+            except KeyError:
+                object = serializer.save(profile=profile, discussion=discussion)
+            return Response(IdSerializer(object).data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class CommentDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Comment.objects.get(pk=pk)
+        except Comment.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        comment = self.get_object(pk)
+        serializer = CommentDetailSerializer(comment)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk, format=None):
+        profile = Profile.objects.get(owner=request.user)
+        comment = self.get_object(pk)
+        serializer = CommentDetailSerializer(comment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status.HTTP_400_BAD_REQUEST)
+
+
+class DiscussionProfile(APIView):
+    def get(self, request, format=None):
+        profile = Profile.objects.get(owner=request.user)
+        discussions = Discussion.objects.filter(profile=profile)
+        serializer = DiscussionListSerializer(discussions, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class DiscussionList(ListCreateAPIView):
@@ -32,7 +85,6 @@ class DiscussionDetail(RetrieveUpdateAPIView):
 
 class CommentUpvote(APIView):
     def put(self, request, pk, *args, **kwargs):
-        profile, upvote, comment = any, any, any
         #check for comment in database
         try:
             comment = Comment.objects.get(pk=pk)
