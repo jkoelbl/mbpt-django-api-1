@@ -1,8 +1,1 @@
-[
-  {"model": "challenges.submissionstatus", "pk": 1, "fields": {"status": "Pending"}},
-  {"model": "challenges.submissionstatus", "pk": 2, "fields": {"status": "Accepted"}},
-  {"model": "challenges.submissionstatus", "pk": 3, "fields": {"status": "Wrong Answer"}},
-  {"model": "challenges.submissionstatus", "pk": 4, "fields": {"status": "Time Limit Exceeded"}},
-  {"model": "challenges.submissionstatus", "pk": 5, "fields": {"status": "Memory Limit Exceeded"}},
-  {"model": "challenges.submissionstatus", "pk": 6, "fields": {"status": "Compile Error"}}
-]
+[{"model": "challenges.submissionstatus", "pk": 1, "fields": {"status": "Pending"}}, {"model": "challenges.submissionstatus", "pk": 2, "fields": {"status": "Accepted"}}, {"model": "challenges.submissionstatus", "pk": 3, "fields": {"status": "Wrong Answer"}}, {"model": "challenges.submissionstatus", "pk": 4, "fields": {"status": "Time Limit Exceeded"}}, {"model": "challenges.submissionstatus", "pk": 5, "fields": {"status": "Memory Limit Exceeded"}}, {"model": "challenges.submissionstatus", "pk": 6, "fields": {"status": "Compile Error"}}]
