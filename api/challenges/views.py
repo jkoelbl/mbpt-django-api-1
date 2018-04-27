@@ -55,6 +55,10 @@ class SubmissionListCreate(APIView):
             challenge.submission_count += 1
             challenge.save()
 
+        #return 400 if no content supplied
+        if request.data['content'] == '':
+            return Response(status=400)
+
         serializer = SubmissionDetailSerializer(data=request.data)
         if serializer.is_valid() and 'language_id' in request.data:
             submission = serializer.save(
